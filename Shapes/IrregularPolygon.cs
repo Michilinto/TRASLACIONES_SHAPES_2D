@@ -11,7 +11,6 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
     {
         public List<Point> Vertices { get; set; } = new List<Point>();
 
-        // 🔹 Constructor vacío
         public IrregularPolygon() : base()
         {
             NumberOfSides = 0;
@@ -26,7 +25,7 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
 
         public override void Draw(Graphics g)
         {
-            // luego implementamos
+
         }
     }
 }

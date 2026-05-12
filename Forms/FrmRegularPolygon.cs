@@ -14,6 +14,10 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
     public partial class FrmRegularPolygon : Form
     {
         RegularPolygon polygon;
+        private int pasoTraslacion = 10;
+        private int pasoRotacion = 5;
+        private int pasoEscala = 5;
+
         public FrmRegularPolygon()
         {
             InitializeComponent();
@@ -21,6 +25,17 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
             picCanvas.Paint += picCanvas_Paint;
             btnCalcular.Click += btnCalcular_Click;
             btnClean.Click += btnClean_Click;
+
+            // Configurar TrackBar
+            tbEscala.Minimum = 5;
+            tbEscala.Maximum = 50;
+            tbEscala.Value = 10;
+            tbEscala.TickStyle = TickStyle.TopLeft;
+            tbEscala.Scroll += tbEscala_Scroll;
+
+            // Habilitar eventos de teclado
+            this.KeyPreview = true;
+            this.KeyDown += FrmRegularPolygon_KeyDown;
         }
 
         private void picCanvas_Paint(object sender, PaintEventArgs e)
@@ -63,13 +78,78 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
             lblArea.Text = "...";
             lblPerimeter.Text = "...";
             lblMessage.Text = "Datos limpiados";
+            tbEscala.Value = 10;
 
             picCanvas.Invalidate();
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             picCanvas.Paint -= picCanvas_Paint;
+            this.KeyDown -= FrmRegularPolygon_KeyDown;
             base.OnFormClosing(e);
+        }
+
+        // Manejo de eventos de teclado para transformaciones
+        private void FrmRegularPolygon_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (polygon == null)
+                return;
+
+            switch (e.KeyCode)
+            {
+                // Trasladar con flechas
+                case Keys.Up:
+                    polygon.Trasladar(0, -pasoTraslacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Down:
+                    polygon.Trasladar(0, pasoTraslacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Left:
+                    polygon.Trasladar(-pasoTraslacion, 0);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Right:
+                    polygon.Trasladar(pasoTraslacion, 0);
+                    e.Handled = true;
+                    break;
+
+                // Rotar con A y D
+                case Keys.A:
+                    polygon.Rotar(pasoRotacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D:
+                    polygon.Rotar(-pasoRotacion);
+                    e.Handled = true;
+                    break;
+            }
+
+            picCanvas.Invalidate();
+        }
+
+        // Manejo del TrackBar para escala
+        private void tbEscala_Scroll(object sender, EventArgs e)
+        {
+            if (polygon == null)
+                return;
+
+            double nuevoValor = tbEscala.Value / 10.0;
+            double valorActual = polygon.FactorEscala;
+
+            if (valorActual > 0)
+            {
+                double factor = nuevoValor / valorActual;
+                polygon.Escalar(factor);
+                lblMessage.Text = "Escala: " + nuevoValor.ToString("F1") + "x";
+            }
+
+            picCanvas.Invalidate();
         }
     }
 }

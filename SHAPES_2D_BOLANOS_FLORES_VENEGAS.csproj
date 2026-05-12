@@ -177,6 +177,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapes\Rhombus.cs" />
     <Compile Include="Shapes\Trapezium.cs" />
+    <Compile Include="Transformations\Escala.cs" />
+    <Compile Include="Transformations\Rotacion.cs" />
+    <Compile Include="Transformations\Traslacion.cs" />
     <EmbeddedResource Include="Forms\FrmCircle.resx">
       <DependentUpon>FrmCircle.cs</DependentUpon>
     </EmbeddedResource>

@@ -34,8 +34,8 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
             float y = Position.Y;
 
             // Proporciones para un corte estético
-            float ir = r * 0.90f; // Radio interior ligeramente menor
-            float offset = r * 0.40f; // Desplazamiento a la derecha
+            float ir = r * 0.90f;
+            float offset = r * 0.40f;
 
             // Definimos los rectángulos de los dos círculos
             RectangleF outerRect = new RectangleF(x, y, r * 2, r * 2);
@@ -52,6 +52,15 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
                 path.AddArc(innerRect, 275, -190);
 
                 path.CloseFigure();
+
+                GraphicsState state = g.Save();
+
+                float centerX = x + r;
+                float centerY = y + r;
+
+                g.TranslateTransform(centerX, centerY);
+                g.RotateTransform(90);
+                g.TranslateTransform(-centerX, -centerY);
 
                 using (Brush brush = new SolidBrush(Color))
                 using (Pen pen = new Pen(Color.Black, 2))

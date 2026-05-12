@@ -54,7 +54,7 @@
             this.miSpecialToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(777, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(866, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -158,42 +158,42 @@
             // mnuHeart
             // 
             this.mnuHeart.Name = "mnuHeart";
-            this.mnuHeart.Size = new System.Drawing.Size(224, 26);
+            this.mnuHeart.Size = new System.Drawing.Size(189, 26);
             this.mnuHeart.Text = "Corazón";
             this.mnuHeart.Click += new System.EventHandler(this.mnuHeart_Click);
             // 
             // mnuCrescent
             // 
             this.mnuCrescent.Name = "mnuCrescent";
-            this.mnuCrescent.Size = new System.Drawing.Size(224, 26);
+            this.mnuCrescent.Size = new System.Drawing.Size(189, 26);
             this.mnuCrescent.Text = "Media Luna";
             this.mnuCrescent.Click += new System.EventHandler(this.mnuCrescent_Click);
             // 
             // mnuPie
             // 
             this.mnuPie.Name = "mnuPie";
-            this.mnuPie.Size = new System.Drawing.Size(224, 26);
+            this.mnuPie.Size = new System.Drawing.Size(189, 26);
             this.mnuPie.Text = "Pie";
             this.mnuPie.Click += new System.EventHandler(this.mnuPie_Click);
             // 
             // miCirculoToolStripMenuItem
             // 
             this.miCirculoToolStripMenuItem.Name = "miCirculoToolStripMenuItem";
-            this.miCirculoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.miCirculoToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.miCirculoToolStripMenuItem.Text = "Círculo";
             this.miCirculoToolStripMenuItem.Click += new System.EventHandler(this.miCirculoToolStripMenuItem_Click);
             // 
             // miElipseToolStripMenuItem
             // 
             this.miElipseToolStripMenuItem.Name = "miElipseToolStripMenuItem";
-            this.miElipseToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.miElipseToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.miElipseToolStripMenuItem.Text = "Elipse";
             this.miElipseToolStripMenuItem.Click += new System.EventHandler(this.miElipseToolStripMenuItem_Click);
             // 
             // miOvaloToolStripMenuItem
             // 
             this.miOvaloToolStripMenuItem.Name = "miOvaloToolStripMenuItem";
-            this.miOvaloToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.miOvaloToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.miOvaloToolStripMenuItem.Text = "Ovalo";
             this.miOvaloToolStripMenuItem.Click += new System.EventHandler(this.miOvaloToolStripMenuItem_Click);
             // 
@@ -234,7 +234,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 456);
+            this.ClientSize = new System.Drawing.Size(866, 540);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;

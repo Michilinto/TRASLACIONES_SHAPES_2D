@@ -13,7 +13,7 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
         {
             var pts = new List<Point>();
             int numPoints = 5;
-            double angleOffset = -Math.PI / 2;
+            double angleOffset = 0;
 
             for (int i = 0; i < numPoints * 2; i++)
             {

@@ -45,11 +45,13 @@
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
+            this.tbEscala = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCanvas)).BeginInit();
             this.panel2.SuspendLayout();
             this.pnlResults.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbEscala)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlCanvas
@@ -59,13 +61,14 @@
             this.pnlCanvas.Location = new System.Drawing.Point(13, 73);
             this.pnlCanvas.Margin = new System.Windows.Forms.Padding(5);
             this.pnlCanvas.Name = "pnlCanvas";
-            this.pnlCanvas.Size = new System.Drawing.Size(480, 336);
+            this.pnlCanvas.Size = new System.Drawing.Size(531, 380);
             this.pnlCanvas.TabIndex = 14;
             this.pnlCanvas.TabStop = false;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(194)))), ((int)(((byte)(194)))));
+            this.panel2.Controls.Add(this.tbEscala);
             this.panel2.Controls.Add(this.btnClear);
             this.panel2.Controls.Add(this.btnCalc);
             this.panel2.Controls.Add(this.pnlResults);
@@ -73,10 +76,10 @@
             this.panel2.Controls.Add(this.lblTitle);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(540, 41);
+            this.panel2.Location = new System.Drawing.Point(566, 41);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(260, 409);
+            this.panel2.Size = new System.Drawing.Size(271, 488);
             this.panel2.TabIndex = 16;
             // 
             // btnClear
@@ -225,7 +228,7 @@
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(800, 41);
+            this.pnlHeader.Size = new System.Drawing.Size(837, 41);
             this.pnlHeader.TabIndex = 15;
             // 
             // lblTitulo
@@ -251,11 +254,19 @@
             this.lblError.TabIndex = 18;
             this.lblError.Text = "...";
             // 
+            // tbEscala
+            // 
+            this.tbEscala.BackColor = System.Drawing.Color.DimGray;
+            this.tbEscala.Location = new System.Drawing.Point(15, 374);
+            this.tbEscala.Name = "tbEscala";
+            this.tbEscala.Size = new System.Drawing.Size(250, 56);
+            this.tbEscala.TabIndex = 12;
+            // 
             // FrmCrescent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(837, 529);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.pnlCanvas);
             this.Controls.Add(this.panel2);
@@ -272,6 +283,7 @@
             this.panel3.PerformLayout();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbEscala)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +307,6 @@
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.TrackBar tbEscala;
     }
 }

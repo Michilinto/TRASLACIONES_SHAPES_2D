@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SHAPES_2D_BOLANOS_FLORES_VENEGAS.Transformations;
 
 namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
 {
@@ -12,12 +13,16 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
     {
         public double MajorAxis { get; set; }
         public double MinorAxis { get; set; }
+        public double AnguloRotacion { get; set; }
+        public double FactorEscala { get; set; }
 
         public Oval(Point position, Color color, double majorAxis, double minorAxis)
             : base(position, color)
         {
             MajorAxis = majorAxis;
             MinorAxis = minorAxis;
+            AnguloRotacion = 0;
+            FactorEscala = 1.0;
         }
 
         public override void Draw(Graphics g)
@@ -28,14 +33,11 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
             {
                 g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                float cx = Position.X;
-                float cy = Position.Y;
+                float height = (float)(MajorAxis * 10 * FactorEscala) * 2f;
+                float width = (float)(MinorAxis * 10 * FactorEscala) * 2f * 0.75f;
 
-                float height = (float)MajorAxis*10 * 2f;
-                float width = (float)MinorAxis*10 * 2f * 0.75f;
-
-                float x = cx - width / 2;
-                float y = cy - height / 2;
+                float x = -width / 2;
+                float y = -height / 2;
 
                 // CLAVE DEL HUEVO
                 float topHeight = height * 1.05f;     // parte superior más larga (suave)
@@ -45,11 +47,22 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
                 path.StartFigure();
                 // Parte superior (más estrecha)
                 path.AddArc(new RectangleF(x, y, width, topHeight), 180f, 180f);
-                //  Parte inferior (más ancha)
+                // Parte inferior (más ancha)
                 path.AddArc(new RectangleF(x, bottomY, width, bottomHeight), 0f, 180f);
                 path.CloseFigure();
+
+                // Guardar el estado del gráfico
+                var state = g.Save();
+
+                // Aplicar transformación: trasladar al centro y rotar
+                g.TranslateTransform(Position.X, Position.Y);
+                g.RotateTransform((float)AnguloRotacion);
+
                 g.FillPath(brush, path);
                 g.DrawPath(pen, path);
+
+                // Restaurar el estado del gráfico
+                g.Restore(state);
             }
         }
 
@@ -78,6 +91,26 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
             double bottomArc = EllipsePerimeter(a, bBottom) / 2.0;
 
             return topArc + bottomArc;
+        }
+
+        // Métodos de transformación
+
+        public void Trasladar(int dx, int dy)
+        {
+            Position = Traslacion.TrasladarPunto(Position, dx, dy);
+        }
+
+        public void Escalar(double factor)
+        {
+            if (factor > 0)
+            {
+                FactorEscala *= factor;
+            }
+        }
+
+        public void Rotar(double grados)
+        {
+            AnguloRotacion += grados;
         }
     }
 }

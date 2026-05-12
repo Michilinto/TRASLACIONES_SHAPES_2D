@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using SHAPES_2D_BOLANOS_FLORES_VENEGAS.Transformations;
 
 namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
 {
     public class Crescent : Figure2D
     {
         public double Radius { get; set; }
+        public double AnguloRotacion { get; set; }
+        public double FactorEscala { get; set; }
 
         public Crescent(double radius, Point position, Color color)
             : base(position, color)
         {
             Radius = radius;
+            AnguloRotacion = 0;
+            FactorEscala = 1.0;
         }
 
         public override double GetArea()
@@ -29,17 +34,15 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
         {
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            float r = (float)Radius;
-            float x = Position.X;
-            float y = Position.Y;
+            float r = (float)(Radius * FactorEscala);
+            float offset = r * 0.40f;
 
             // Proporciones para un corte estético
             float ir = r * 0.90f;
-            float offset = r * 0.40f;
 
             // Definimos los rectángulos de los dos círculos
-            RectangleF outerRect = new RectangleF(x, y, r * 2, r * 2);
-            RectangleF innerRect = new RectangleF(x + offset, y + (r - ir), ir * 2, ir * 2);
+            RectangleF outerRect = new RectangleF(-r, -r, r * 2, r * 2);
+            RectangleF innerRect = new RectangleF(offset - r, -ir, ir * 2, ir * 2);
 
             using (GraphicsPath path = new GraphicsPath())
             {
@@ -55,12 +58,8 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
 
                 GraphicsState state = g.Save();
 
-                float centerX = x + r;
-                float centerY = y + r;
-
-                g.TranslateTransform(centerX, centerY);
-                g.RotateTransform(90);
-                g.TranslateTransform(-centerX, -centerY);
+                g.TranslateTransform(Position.X, Position.Y);
+                g.RotateTransform((float)AnguloRotacion);
 
                 using (Brush brush = new SolidBrush(Color))
                 using (Pen pen = new Pen(Color.Black, 2))
@@ -71,7 +70,29 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Shapes
                     // Dibujamos el borde SOLO de la silueta
                     g.DrawPath(pen, path);
                 }
+
+                g.Restore(state);
             }
+        }
+
+        // Métodos de transformación
+
+        public void Trasladar(int dx, int dy)
+        {
+            Position = Traslacion.TrasladarPunto(Position, dx, dy);
+        }
+
+        public void Escalar(double factor)
+        {
+            if (factor > 0)
+            {
+                FactorEscala *= factor;
+            }
+        }
+
+        public void Rotar(double grados)
+        {
+            AnguloRotacion += grados;
         }
     }
 }

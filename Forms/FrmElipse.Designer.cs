@@ -47,11 +47,13 @@
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.lblSubtitle2 = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
+            this.tbEscala = new System.Windows.Forms.TrackBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbEscala)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,7 +64,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(772, 41);
+            this.panel1.Size = new System.Drawing.Size(821, 41);
             this.panel1.TabIndex = 6;
             // 
             // lblTitulo
@@ -84,7 +86,7 @@
             this.picCanvas.Location = new System.Drawing.Point(14, 69);
             this.picCanvas.Margin = new System.Windows.Forms.Padding(5);
             this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(480, 336);
+            this.picCanvas.Size = new System.Drawing.Size(491, 423);
             this.picCanvas.TabIndex = 7;
             this.picCanvas.TabStop = false;
             this.picCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.picCanvas_Paint);
@@ -92,6 +94,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(194)))), ((int)(((byte)(194)))));
+            this.panel2.Controls.Add(this.tbEscala);
             this.panel2.Controls.Add(this.btnClean);
             this.panel2.Controls.Add(this.btnCalcular);
             this.panel2.Controls.Add(this.panel4);
@@ -99,10 +102,10 @@
             this.panel2.Controls.Add(this.lblTitle);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(512, 41);
+            this.panel2.Location = new System.Drawing.Point(522, 41);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(260, 378);
+            this.panel2.Size = new System.Drawing.Size(299, 495);
             this.panel2.TabIndex = 12;
             // 
             // btnClean
@@ -111,7 +114,7 @@
             this.btnClean.FlatAppearance.BorderSize = 0;
             this.btnClean.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnClean.Font = new System.Drawing.Font("Ubuntu Mono", 7.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClean.Location = new System.Drawing.Point(80, 320);
+            this.btnClean.Location = new System.Drawing.Point(183, 312);
             this.btnClean.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClean.Name = "btnClean";
             this.btnClean.Size = new System.Drawing.Size(94, 27);
@@ -127,7 +130,7 @@
             this.btnCalcular.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCalcular.Font = new System.Drawing.Font("Ubuntu Mono", 7.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalcular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnCalcular.Location = new System.Drawing.Point(80, 273);
+            this.btnCalcular.Location = new System.Drawing.Point(27, 312);
             this.btnCalcular.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(94, 27);
@@ -146,7 +149,7 @@
             this.panel4.Location = new System.Drawing.Point(15, 174);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(234, 79);
+            this.panel4.Size = new System.Drawing.Size(262, 79);
             this.panel4.TabIndex = 6;
             // 
             // lblArea
@@ -223,7 +226,7 @@
             this.panel3.Location = new System.Drawing.Point(15, 46);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(234, 79);
+            this.panel3.Size = new System.Drawing.Size(262, 79);
             this.panel3.TabIndex = 5;
             // 
             // txtHeight
@@ -275,12 +278,20 @@
             this.lblMessage.TabIndex = 14;
             this.lblMessage.Text = "...";
             // 
+            // tbEscala
+            // 
+            this.tbEscala.BackColor = System.Drawing.Color.DimGray;
+            this.tbEscala.Location = new System.Drawing.Point(27, 373);
+            this.tbEscala.Name = "tbEscala";
+            this.tbEscala.Size = new System.Drawing.Size(250, 56);
+            this.tbEscala.TabIndex = 11;
+            // 
             // FrmElipse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(252)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(772, 419);
+            this.ClientSize = new System.Drawing.Size(821, 536);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.picCanvas);
@@ -296,6 +307,7 @@
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbEscala)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,5 +334,6 @@
         private System.Windows.Forms.TextBox txtWidth;
         private System.Windows.Forms.Label lblSubtitle2;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.TrackBar tbEscala;
     }
 }

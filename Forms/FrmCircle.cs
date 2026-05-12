@@ -14,9 +14,27 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
     public partial class FrmCircle : Form
     {
         private CCircle circle;
+        private int pasoTraslacion = 10;
+        private int pasoRotacion = 5;
+
         public FrmCircle()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            picCanvas.Paint += picCanvas_Paint;
+            btnCalcular.Click += btnCalcular_Click;
+            btnClean.Click += btnClean_Click;
+
+            // Configurar TrackBar
+            tbEscala.Minimum = 5;
+            tbEscala.Maximum = 50;
+            tbEscala.Value = 10;
+            tbEscala.TickStyle = TickStyle.TopLeft;
+            tbEscala.Scroll += tbEscala_Scroll;
+
+            // Habilitar eventos de teclado
+            this.KeyPreview = true;
+            this.KeyDown += FrmCircle_KeyDown;
         }
 
         private void FrmCircle_Load(object sender, EventArgs e)
@@ -58,6 +76,7 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
             txtRadius.Text = "";
             circle = null;
             lblMessage.Text = "Campos limpiados";
+            tbEscala.Value = 10;
             picCanvas.Invalidate();
         }
 
@@ -67,6 +86,72 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
             {
                 circle.Draw(e.Graphics);
             }
+        }
+
+        private void FrmCircle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (circle == null)
+                return;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    circle.Trasladar(0, -pasoTraslacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Down:
+                    circle.Trasladar(0, pasoTraslacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Left:
+                    circle.Trasladar(-pasoTraslacion, 0);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Right:
+                    circle.Trasladar(pasoTraslacion, 0);
+                    e.Handled = true;
+                    break;
+
+                case Keys.A:
+                    circle.Rotar(pasoRotacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D:
+                    circle.Rotar(-pasoRotacion);
+                    e.Handled = true;
+                    break;
+            }
+
+            picCanvas.Invalidate();
+        }
+
+        private void tbEscala_Scroll(object sender, EventArgs e)
+        {
+            if (circle == null)
+                return;
+
+            double nuevoValor = tbEscala.Value / 10.0;
+            double valorActual = circle.FactorEscala;
+
+            if (valorActual > 0)
+            {
+                double factor = nuevoValor / valorActual;
+                circle.Escalar(factor);
+                lblMessage.Text = "Escala: " + nuevoValor.ToString("F1") + "x";
+            }
+
+            picCanvas.Invalidate();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            picCanvas.Paint -= picCanvas_Paint;
+            this.KeyDown -= FrmCircle_KeyDown;
+            base.OnFormClosing(e);
         }
     }
 }

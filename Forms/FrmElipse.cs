@@ -14,9 +14,27 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
     public partial class FrmElipse : Form
     {
         private Elipse elipse;
+        private int pasoTraslacion = 10;
+        private int pasoRotacion = 5;
+
         public FrmElipse()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            picCanvas.Paint += picCanvas_Paint;
+            btnCalcular.Click += btnCalcular_Click;
+            btnClean.Click += btnClean_Click;
+
+            // Configurar TrackBar
+            tbEscala.Minimum = 5;
+            tbEscala.Maximum = 50;
+            tbEscala.Value = 10;
+            tbEscala.TickStyle = TickStyle.TopLeft;
+            tbEscala.Scroll += tbEscala_Scroll;
+
+            // Habilitar eventos de teclado
+            this.KeyPreview = true;
+            this.KeyDown += FrmElipse_KeyDown;
         }
 
         private void btnClean_Click(object sender, EventArgs e)
@@ -27,6 +45,7 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
             txtWidth.Text = "";
             lblMessage.Text = "Campos limpiados";
             elipse = null;
+            tbEscala.Value = 10;
             picCanvas.Invalidate();
 
         }
@@ -73,6 +92,72 @@ namespace SHAPES_2D_BOLANOS_FLORES_VENEGAS.Forms
             {
                 elipse.Draw(e.Graphics);
             }
+        }
+
+        private void FrmElipse_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (elipse == null)
+                return;
+
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    elipse.Trasladar(0, -pasoTraslacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Down:
+                    elipse.Trasladar(0, pasoTraslacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Left:
+                    elipse.Trasladar(-pasoTraslacion, 0);
+                    e.Handled = true;
+                    break;
+
+                case Keys.Right:
+                    elipse.Trasladar(pasoTraslacion, 0);
+                    e.Handled = true;
+                    break;
+
+                case Keys.A:
+                    elipse.Rotar(pasoRotacion);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D:
+                    elipse.Rotar(-pasoRotacion);
+                    e.Handled = true;
+                    break;
+            }
+
+            picCanvas.Invalidate();
+        }
+
+        private void tbEscala_Scroll(object sender, EventArgs e)
+        {
+            if (elipse == null)
+                return;
+
+            double nuevoValor = tbEscala.Value / 10.0;
+            double valorActual = elipse.FactorEscala;
+
+            if (valorActual > 0)
+            {
+                double factor = nuevoValor / valorActual;
+                elipse.Escalar(factor);
+                lblMessage.Text = "Escala: " + nuevoValor.ToString("F1") + "x";
+            }
+
+            picCanvas.Invalidate();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            picCanvas.Paint -= picCanvas_Paint;
+            this.KeyDown -= FrmElipse_KeyDown;
+            base.OnFormClosing(e);
         }
     }
 }
